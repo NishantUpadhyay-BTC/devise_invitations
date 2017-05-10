@@ -8,7 +8,7 @@ class DeviseInvitations::Invitation < ActiveRecord::Base
 
   enum status: [:pending, :accepted, :ignored]
 
-  after_create { DeviseInvitations::Mailer.instructions(self).deliver }
+  after_create { DeviseInvitations::Mailer.delay.instructions(self) }
 
   private
 
