@@ -1,5 +1,7 @@
-<h1><%= t('.hello', email: @sender.email, app_name: @app_name) %></h1>
-
+<p>
+  <%= @sender.username %> has invited you to take control of your own Pre-Approval
+<p>
+<br>
 <p class="action">
   <%= link_to t('.join'), accept_invitation_request_url(token: @token) %>
 </p>
