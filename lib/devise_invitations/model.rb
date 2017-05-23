@@ -8,7 +8,10 @@ class DeviseInvitations::Invitation < ActiveRecord::Base
 
   enum status: [:pending, :accepted, :ignored]
 
-  after_create { DeviseInvitations::Mailer.delay.instructions(self) }
+  after_create do
+    buyer_profile = BuyerProfile.find(self.profile_id)
+    DeviseInvitations::Mailer.instructions(self, buyer_profile).deliver
+  end
 
   private
 

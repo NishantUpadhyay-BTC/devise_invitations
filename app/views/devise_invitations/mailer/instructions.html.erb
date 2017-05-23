@@ -1,7 +1,9 @@
+<p> Dear <%= @buyer.first_name.capitalize if @buyer.present? %>, </p>
+
 <p>
-  <%= @sender.username %> has invited you to take control of your own Pre-Approval
+  Your loan officer, <%= @sender.username %> has invited you to take control of your on demand pre-approval letters and mortgage calculations. Please click on the link below to register your account.
+</p>
+
 <p>
-<br>
-<p class="action">
-  <%= link_to t('.join'), accept_invitation_request_url(token: @token) %>
+  <%=link_to 'Accept Invitation', accept_invitation_request_url(token: @token) %>
 </p>

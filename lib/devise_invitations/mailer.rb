@@ -1,5 +1,6 @@
 class DeviseInvitations::Mailer < ApplicationMailer
-  def instructions(invitation)
+  def instructions(invitation, buyer)
+    @buyer = buyer
     @token    = invitation.token
     @sender   = invitation.sent_by
     @app_name = app_name
