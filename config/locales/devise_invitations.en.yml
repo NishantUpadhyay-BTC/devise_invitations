@@ -2,6 +2,6 @@ en:
   devise_invitations:
     mailer:
       instructions:
-        subject: 'You got an invite!'
+        subject: 'You have been invited to Appruv!'
         hello: '%{email} invited you to join %{app_name}.'
         join: 'Accept the invitation'
