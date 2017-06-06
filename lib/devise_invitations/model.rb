@@ -10,7 +10,7 @@ class DeviseInvitations::Invitation < ActiveRecord::Base
 
   after_create do
     buyer_profile = BuyerProfile.find(self.profile_id)
-    DeviseInvitations::Mailer.instructions(self, buyer_profile).deliver
+    DeviseInvitations::Mailer.delay.instructions(self, buyer_profile)
   end
 
   private
