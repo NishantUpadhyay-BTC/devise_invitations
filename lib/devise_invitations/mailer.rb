@@ -7,7 +7,7 @@ class DeviseInvitations::Mailer < ApplicationMailer
 
     mail(
       subject: t('.subject'),
-      from:    sender_email,
+      from:    'registration@appruv.me',
       to:      invitation.email,
     )
   end
