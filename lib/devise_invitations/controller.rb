@@ -19,9 +19,6 @@ class DeviseInvitations::InvitationsController < Devise::InvitationsController
       DeviseInvitations::Invitation.pending
         .where(email: invitation.email)
         .update_all(status: statuses[:ignored])
-
-      deal = Deal.find_by(loan_officer_profile_id: invitation.sent_by.profile.id, buyer_profile_id: user.profile.id, active: false, pending: true)
-      deal.update(active: true, pending: false)
       UserMailer.delay.notify_loan_officer(invitation.sent_by, user)
       UserMailer.delay.welcome_notifier(user)
       redirect_to accept_invitation_url(user, invitation_token: user.raw_invitation_token)
