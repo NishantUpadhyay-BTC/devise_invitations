@@ -19,8 +19,6 @@ class DeviseInvitations::InvitationsController < Devise::InvitationsController
       DeviseInvitations::Invitation.pending
         .where(email: invitation.email)
         .update_all(status: statuses[:ignored])
-      UserMailer.delay.notify_loan_officer(invitation.sent_by, user)
-      UserMailer.delay.welcome_notifier(user)
       redirect_to accept_invitation_url(user, invitation_token: user.raw_invitation_token)
     else
       flash[:error] = "Invalid invitation. Please try again later."
